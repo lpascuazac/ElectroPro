@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-title>Inicio de Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+
+		<ion-item>
+			<ion-label position="floating">Correo Electrónico</ion-label>
+			<ion-input type="email" formControlName="email"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="floating">Contraseña</ion-label>
+			<ion-input type="password" formControlName="password"></ion-input>
+		</ion-item>
+
+		<ion-button expand="full" type="button" (click)="onSubmit()" [disabled]="!credentialsForm.valid"> Login </ion-button>
+		<ion-button expand="full" type="button" (click)="register()" [disabled]="!credentialsForm.valid" color = "secondary"> Registro </ion-button>
+	</form>
+</ion-content>

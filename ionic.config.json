@@ -1,0 +1,8 @@
+{
+  "name": "auten",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

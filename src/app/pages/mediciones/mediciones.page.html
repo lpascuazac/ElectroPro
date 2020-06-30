@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mediciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of (results | async)" (click)="openMedicionInTab(item.id)">
+      <ion-label text-wrap>
+        <h3>{{ item.date }}</h3>
+      </ion-label>
+      <ion-badge color={{putColor(item.measure)}} slot="end">{{item.measure}}</ion-badge>
+      <ion-badge color="light" slot="start">{{item.id}}</ion-badge>
+
+    </ion-item>
+  </ion-list>
+</ion-content>

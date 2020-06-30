@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Cuenta </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+	<!-- <ionic-label> Detalles sobre la cuenta: </ionic-label> -->
+	
+
+	<p>{{data}}</p> 
+	<p>{{info}}</p>
+	<!-- <p>{{authors}}</p> -->
+
+	<ion-button expand="full" (click)="loadSpecialInfo()"> Información </ion-button>
+	<ion-button expand="full" (click)="logout()"> Cerrar Sesión </ion-button>
+	<ion-button expand="full" (click)="clearToken()"> Clear JWT </ion-button>
+
+</ion-content>
