@@ -23,6 +23,7 @@ export class GeneralPage implements OnInit {
     this.results = this.albumService.getMeasures();
 
     this.results.subscribe(elt => {
+
     	var results_lenght = elt.length;
     	console.log("Lenght: " + results_lenght);
 
@@ -34,12 +35,16 @@ export class GeneralPage implements OnInit {
     	}
     	console.log("Consum_tot: " + tot);
 
-    	this.consum_tot = tot;
-    	this.consum_avg = tot/results_lenght;
+      var conv_fact = 3600000;
+
+      tot = tot/conv_fact;
+
+    	this.consum_tot = Number((Math.round(Number(tot) * 10000) / 10000).toFixed(4));
+    	this.consum_avg = Number((Math.round(Number(tot/results_lenght) * 10000) / 10000).toFixed(4));
 
     	console.log("Consum_avg: " + this.consum_avg);
 
-    	this.cost_unit = 450; //Precio kWh
+    	this.cost_unit = 550; //Precio kWh
 
     	this.cost_avg = this.consum_avg * this.cost_unit;
     	this.cost_tot = this.consum_tot * this.cost_unit;

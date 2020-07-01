@@ -11,8 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class MedicionPage implements OnInit {
 
   information = null;
-  cost = 450;
-
+  cost = 550;  //Precio kWh
+  key = [];
+  value = [];
   constructor(private activatedRoute: ActivatedRoute, private albumService: AlbumService) { }
 
   ngOnInit() {
@@ -22,14 +23,26 @@ export class MedicionPage implements OnInit {
     // Get the information from the API
     this.albumService.getDetail(id).subscribe(result => {
       this.information = result;
-      console.log("id: " + this.information.id);
+
+      //console.clear();
+      //var str = "Apples are round, and apples are juicy."; 
+      var split1 = this.information.date.split("T", 2); 
+      this.information.date = split1[0];
+
+      var split2 = split1[1].split(":", 2);
+      this.information.hour = split2[0] + ":" + split2[1];
+
       console.log("Date: " + this.information.date);
-      console.log("Measure: " + this.information.measure);
-      console.log("Place: " + this.information.place);
-      this.information.cost = this.information.measure * this.cost;
-      console.log("Test: " + this.information.cost);
+      console.log("Hour: " + this.information.hour);
 
+    
+      this.information.m_joule = this.information.measure;
+      this.information.m_kwh =  (Math.round(this.information.measure / 3600000 * 10000) / 10000).toFixed(4);
+      this.information.cost = this.information.m_kwh * this.cost;
+      console.log("Costo: " + this.information.cost);
 
+      console.log("Joule: " + this.information.m_joule);
+      console.log("kWh: " + this.information.m_kwh);
       
       
   	  });

@@ -24,13 +24,23 @@ export class InsidePage implements OnInit {
   	this.authService.getSpecialData().subscribe(res => {
   		this.data = res['msg'] + "Bienvenido a ElectroPro - v0.1";
       this.info = "Aplicación diseñada para la materia de Sistemas Embebidos de la Universidad Nacional de Colombia"; 
-      this.authors = "lpascuazac - jemunozva";
+      this.authors = "lpascuazac - jemunozva - scramosi - ianunezf - jarangos";
   	});
     //this.router.navigate(['tabs']);
   }
 
   logout() {
   	this.authService.logout();
+
+    //Delete acces token
+    this.storage.remove('access_token');
+
+    //Toast
+    let toast = this.toastoController.create({
+      message: 'Sesión Finalizada',
+      duration: 3000
+    });
+    toast.then(toast => toast.present());
   }
 
   clearToken() {

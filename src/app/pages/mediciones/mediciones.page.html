@@ -6,11 +6,12 @@
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let item of (results | async)" (click)="openMedicionInTab(item.id)">
+    <ion-item button *ngFor="let item of (results | async)" (click)="openMedicionInTab(item.id, putColor(item.measure))">
       <ion-label text-wrap>
-        <h3>{{ item.date }}</h3>
+        <h3>{{ getDate(item.date) }}</h3>
+        <p>{{ getHour(item.date) }}</p>
       </ion-label>
-      <ion-badge color={{putColor(item.measure)}} slot="end">{{item.measure + " kWh"}}</ion-badge>
+      <ion-badge color={{putColor(item.measure)}} slot="end">{{toKwh(item.measure) + " kWh"}}</ion-badge>
       <ion-badge color="light" slot="start">{{item.id}}</ion-badge>
 
     </ion-item>

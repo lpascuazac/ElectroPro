@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginPage implements OnInit {
 
 	credentialsForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private toastoController: ToastController) { }
 
   ngOnInit() {
   	this.credentialsForm = this.formBuilder.group({
@@ -22,12 +23,28 @@ export class LoginPage implements OnInit {
 
   onSubmit() {
   	this.authService.login(this.credentialsForm.value).subscribe();
+
+    //Toast
+    let toast = this.toastoController.create({
+      message: 'Inciando Sesión',
+      duration: 3000
+    });
+    toast.then(toast => toast.present());
+
+    //console.log("->" + this.credentialsForm.controls['email'].value);
   }
 
   register() {
   	this.authService.register(this.credentialsForm.value).subscribe(res => {
   		this.authService.login(this.credentialsForm.value).subscribe();
   	});
+
+    //Toast
+    let toast = this.toastoController.create({
+      message: 'Usuario ' + this.credentialsForm.controls['email'].value + ' creado exitosamente. Iniciando Sesión',
+      duration: 3000
+    });
+    toast.then(toast => toast.present());
   }
 
 }

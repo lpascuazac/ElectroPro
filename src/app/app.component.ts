@@ -27,12 +27,12 @@ export class AppComponent {
       this.splashScreen.hide();
 
       this.authService.authenticationState.subscribe(state => {
-        console.log("State:" + state);
+        //console.log("State:" + state);
         if (state) {
-          console.log("State if:" + state);
+          //console.log("State if:" + state);
           this.router.navigate(['']);
         } else {
-          console.log("State else:" + state);
+          //console.log("State else:" + state);
           this.router.navigate(['login']);
         }
       });

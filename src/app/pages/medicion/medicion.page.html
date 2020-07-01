@@ -14,15 +14,40 @@
       <ion-card *ngIf="information">
         
         <ion-card-header>
-          <ion-card-subtitle>{{"Fecha de la medición: " + information.date}}</ion-card-subtitle>
-          <ion-card-title>{{"Consumo: " + information.measure + " kW"}}</ion-card-title>
-          <ion-card-subtitle>{{"Lectura número: " + information.id}}</ion-card-subtitle>
-          <ion-card-subtitle>{{"Ubicación del medidor: " + information.place}}</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          {{"Precio: $" + (information.cost | number : fractionSize)}}
-        </ion-card-content>
 
+          <ion-card-subtitle>
+          <h5>{{"Fecha de la medición: "}}</h5>
+          <p style="text-align:right;"> {{information.date}}</p>
+          </ion-card-subtitle>
+
+          <ion-card-subtitle>
+          <h5>{{"Hora de la medición: "}}</h5>
+          <p style="text-align:right;"> {{information.hour}}</p>
+          </ion-card-subtitle>
+
+          <ion-card-title>
+            <h1>{{"Consumo: "}}</h1>
+            <p style="text-align:right;"> {{information.m_kwh + " KWh"}}</p>
+            <p style="text-align:right;"> {{(information.m_joule| number : fractionSize) + " J"}}</p>
+          </ion-card-title>
+
+          <ion-card-subtitle>
+          <h5>{{"Lectura número: "}}</h5>
+          <p style="text-align:right;"> {{information.id}}</p>
+          </ion-card-subtitle>
+
+          <ion-card-subtitle>
+          <h5>{{"Ubicación del medidor: " }}</h5>
+          <p style="text-align:right;"> {{information.place}}</p>
+          </ion-card-subtitle>
+
+          <ion-card-subtitle>
+          <h3>{{"Precio: "}}</h3>
+          <p style="text-align:right;"> {{"$" + (information.cost | number : fractionSize)}}</p>
+          </ion-card-subtitle>
+
+
+        </ion-card-header>
       </ion-card>
     </ion-content>
 </ion-app>
