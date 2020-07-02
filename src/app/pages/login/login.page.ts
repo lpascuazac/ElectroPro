@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
 
     //Toast
     let toast = this.toastoController.create({
-      message: 'Usuario ' + this.credentialsForm.controls['email'].value + ' creado exitosamente. Iniciando Sesión',
+      message: 'Creando usuario ' + this.credentialsForm.controls['email'].value + '. Iniciando Sesión',
       duration: 3000
     });
     toast.then(toast => toast.present());
